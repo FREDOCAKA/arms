@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function getDashboard($request,$response,$args)
     {
-        $args = $this->auth->isAdmin();
-        return $this->view->render($response,'dashboard.twig');
+    
+        return $this->view->render($response,'dashboard/dashboard.twig');
     }
 }
