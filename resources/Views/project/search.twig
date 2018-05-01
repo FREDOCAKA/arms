@@ -1,5 +1,5 @@
 
-<form class="hm-search" method="post" action="{{ path_for('student.search') }}">
+<form class="hm-search" method="post" action="{{ path_for('project.search') }}">
 
   <div class="form-row">
 
@@ -20,11 +20,10 @@
 
         <div class="col">
         <div class="form-group">
-            <select name="course" class="form-control text-capitalize" id="exampleFormControlSelect1">
+            <select name="status" class="form-control text-capitalize" id="exampleFormControlSelect1">
             <option value=""> Status</option>
-            {% for item in helper.category %}
-            <option value="{{ item.id }}">{{ item.name }}</option>
-            {% endfor %}
+            <option value="1">Active</option>
+             <option value="0">Approved</option>
             </select>
         </div>
     </div>

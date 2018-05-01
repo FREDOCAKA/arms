@@ -260,18 +260,19 @@ class ProjectController extends Controller
      */
     public function search($request, $response, $args)
     {
-        $name   = $request->getParam('name');
-        $email  = $request->getParam('email');
-        $status = $request->getParam('status');
+        $title      = $request->getParam('title');
+        $category   = $request->getParam('category');
+        $status     = $request->getParam('status');
        
 
-       $query = $this->db->table('lecturers')->where('name', 'like',"%$name%")
-                                            ->where('email','like',"%$email%")
+       $query = $this->db->table('projects')->join('category','category.id','=','projects.category_id')
+                                           ->where('title', 'like',"%$title%")
+                                            ->where('category_id','like',"%$category%")
                                             ->where('status','like',"%$status%")
                                             ->limit(15)->get();
                                             
 
-       return $this->view->render($response,'project/index.twig',[
+       return $this->view->render($response,'project/project.twig',[
            'items' => $query
        ]);
     }

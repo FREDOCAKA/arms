@@ -28,6 +28,7 @@ $this->get('/project/{id}','ProjectController:showProject')->setName('project.sh
 $this->post('/project/{id}','ProjectController:fileDownload');
 $this->get('/project/update/{id}','ProjectController:getUpdate')->setName('project.update');
 $this->put('/project/update/{id}','ProjectController:updateProject');
+$this->post('/project','ProjectController:search')->setName('project.search');
 
 /**
  * Category routes
