@@ -4,13 +4,13 @@
 
 {% include 'template/partial/sidebar.twig' %}
 
-<div class="col-md-8 offset-md-1 col-lay">
+<div class="col-md-9 col-lay">
 
   {% block maincontent %}
 
-  <h4>Profile</h4>
-
-  <h6>{{ auth.user.name }}</h6>
+    {% if auth.user.role == 1%}
+        {% include 'dashboard/student/index.twig' %}
+    {% endif %}
   
   {% endblock %}
 
