@@ -37,7 +37,7 @@ class ProjectController extends Controller
 
                                          
       
-        return $this->view->render($response,'project/project.twig',
+        return $this->view->render($response,'admin/project/project.twig',
         ['items' => $args ]
     );
     }
@@ -52,7 +52,7 @@ class ProjectController extends Controller
     public function create($request,$response, array $args)
     {
 
-      return $this->view->render($response,'project/create.twig');
+      return $this->view->render($response,'admin/project/create.twig');
     }
 
     /**
@@ -148,7 +148,7 @@ class ProjectController extends Controller
     public function showProject($request,$response,$args)
     {
         $project  = Project::find($args['id']);
-        return $this->view->render($response,'project/single.twig',
+        return $this->view->render($response,'admin/project/single.twig',
         ['project' => $project]);
     }
 
@@ -164,7 +164,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($args['id']);
         $category = Category::find($project->category_id);
-        return $this->view->render($response,'project/update.twig',
+        return $this->view->render($response,'admin/project/update.twig',
                                  [ 'project'  => $project,
                                    'category' => $category]);
     }
@@ -272,7 +272,7 @@ class ProjectController extends Controller
                                             ->limit(15)->get();
                                             
 
-       return $this->view->render($response,'project/project.twig',[
+       return $this->view->render($response,'admin/project/project.twig',[
            'items' => $query
        ]);
     }

@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index($request,$response,$args)
     {
         $category = Category::paginate(10,['*'],'page', $request->getParam('page'));
-        return $this->view->render($response,'category/index.twig',[
+        return $this->view->render($response,'admin/category/index.twig',[
             'items' => $category,
         ]);
         
@@ -57,7 +57,7 @@ class CategoryController extends Controller
      */
     public function show($request,$response)
     {
-        return $this->view->render($response,'category/create.twig');
+        return $this->view->render($response,'admin/category/create.twig');
 
     }
 
@@ -105,7 +105,7 @@ class CategoryController extends Controller
     
         $category = Category::find($args['id']);
        
-        return $this->view->render($response,'category/update.twig',[
+        return $this->view->render($response,'admin/category/update.twig',[
             'category' => $category
         ]);
     }

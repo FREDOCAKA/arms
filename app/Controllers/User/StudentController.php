@@ -24,7 +24,7 @@ class StudentController extends Controller
                               ->paginate(13,['*'],'page',$request->getParam('page'));
 
 
-        return $this->view->render($response,'student/index.twig',[
+        return $this->view->render($response,'admin/student/index.twig',[
             'items' => $args,
             'list' =>  $list
         ]);
@@ -42,7 +42,7 @@ class StudentController extends Controller
     {
         $student  = Student::find($args['id']);
 
-        return $this->view->render($response,'student/show.twig',[
+        return $this->view->render($response,'admin/student/show.twig',[
             'student' => $student
         ]);
 
@@ -88,7 +88,7 @@ class StudentController extends Controller
                                             ->limit(13)->get();
                                             // paginate(5,['*'],'page',$request->getParam('page'));
 
-       return $this->view->render($response,'student/index.twig',[
+       return $this->view->render($response,'admin/student/index.twig',[
            'items' => $query
        ]);
     }

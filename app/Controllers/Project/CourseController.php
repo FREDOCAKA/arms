@@ -23,7 +23,7 @@ class CourseController extends Controller
     {
         $courses = Course::paginate(10,['*'],'page',$request->getParam('page'));
     
-        return $this->view->render($response,'course/index.twig',[
+        return $this->view->render($response,'admin/course/index.twig',[
             'items' => $courses,
         ]);
 
@@ -38,7 +38,7 @@ class CourseController extends Controller
      */
     public function show($request,$response)
     {
-        return $this->view->render($response,'course/create.twig');
+        return $this->view->render($response,'admin/course/create.twig');
 
     }
 
@@ -82,7 +82,7 @@ class CourseController extends Controller
     {
         $course = Course::find($args['id']);
 
-        return $this->view->render($response,'course/update.twig',[
+        return $this->view->render($response,'admin/course/update.twig',[
             'course' => $course,
         ]);
 

@@ -23,7 +23,7 @@ class LecturerController extends Controller
         $args = Lecturer::paginate(15,['*'],'page',$request->getParam('page'));
 
 
-        return $this->view->render($response,'lecturer/index.twig',[
+        return $this->view->render($response,'admin/lecturer/index.twig',[
             'items' => $args,
         ]);
     }
@@ -40,7 +40,7 @@ class LecturerController extends Controller
     {
         $lecturer  = Lecturer::find($args['id']);
 
-        return $this->view->render($response,'lecturer/show.twig',[
+        return $this->view->render($response,'admin/lecturer/show.twig',[
             'lecturer' => $lecturer
         ]);
 
@@ -102,7 +102,7 @@ class LecturerController extends Controller
                                             ->limit(15)->get();
                                             
 
-       return $this->view->render($response,'lecturer/index.twig',[
+       return $this->view->render($response,'admin/lecturer/index.twig',[
            'items' => $query
        ]);
     }
