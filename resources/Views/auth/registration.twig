@@ -1,0 +1,30 @@
+{% extends 'template/app.twig' %}
+
+{% block content %}
+
+
+<div class="col-md-5 offset-md-3">
+
+    <div class="authx">
+
+    <h4 class="auth-title text-center text-primary">Create an Account</h4>
+
+        <div class="form-control ">
+
+        <a href="{{ path_for('auth.signup')}}" class="btn  btn-block btn-primary">
+            <i class="fa fa-user"></i>
+            Student
+        </a>
+        <p class="text-center text-muted">.</p>
+
+        <a href="{{ path_for('auth.lecturer') }}" class="btn  btn-block btn-success">
+        <i class="fa fa-user"></i>
+            Lecturer
+        </a>
+       
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

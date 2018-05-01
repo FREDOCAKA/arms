@@ -1,0 +1,44 @@
+  <nav class="navbar navbar-expand-md  d-flex flex-column flex-md-row
+     align-items-center  bg-white border-bottom box-shadow">
+
+      <a class="navbar-brand text-dark my-0  font-weight-normal" href="#">ARMS System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-dark">hhh</span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link text-dark" href="{{ path_for('home')}}">Projects <span class="sr-only">(current)</span></a>
+          </li>
+
+          {% if auth.check %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ path_for('home')}}" id="dropdown01" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth.user.name }}</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+             <a class="dropdown-item" href="{{ path_for('profile',{id:auth.user.id})}}">Profile</a>
+             <a class="dropdown-item" href="{{ path_for('password')}}">Settings</a>
+              <a class="dropdown-item" href="{{ path_for('logout') }}">Logout</a>
+            </div>
+          </li>
+          
+          {% else %}
+
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{{ path_for('auth.login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+           
+            <a class="btn btn-outline-primary" href="{{ path_for('auth.register') }}">Sign up</a>
+          </li>
+
+          {% endif %}
+          
+        </ul>
+        
+         
+       
+      </div>
+ </nav>

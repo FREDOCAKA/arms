@@ -1,0 +1,21 @@
+<br />
+<b>Warning</b>:  Missing argument 1 for App\Helpers\Helper::allCategory(), called in /var/www/public/arms/bootstrap/app.php on line 79 and defined in <b>/var/www/public/arms/app/Helpers/Helper.php</b> on line <b>18</b><br />
+<br />
+<b>Warning</b>:  Missing argument 2 for App\Helpers\Helper::allCategory(), called in /var/www/public/arms/bootstrap/app.php on line 79 and defined in <b>/var/www/public/arms/app/Helpers/Helper.php</b> on line <b>18</b><br />
+<br />
+<b>Warning</b>:  Missing argument 3 for App\Helpers\Helper::allCategory(), called in /var/www/public/arms/bootstrap/app.php on line 79 and defined in <b>/var/www/public/arms/app/Helpers/Helper.php</b> on line <b>18</b><br />
+<br />
+<b>Warning</b>:  Missing argument 1 for App\Helpers\Helper::projectCategory(), called in /var/www/public/arms/bootstrap/app.php on line 80 and defined in <b>/var/www/public/arms/app/Helpers/Helper.php</b> on line <b>31</b><br />
+<br />
+<b>Warning</b>:  Missing argument 2 for App\Helpers\Helper::projectCategory(), called in /var/www/public/arms/bootstrap/app.php on line 80 and defined in <b>/var/www/public/arms/app/Helpers/Helper.php</b> on line <b>31</b><br />
+<br />
+<b>Notice</b>:  Undefined index: errors in <b>/var/www/public/arms/app/Middleware/InputErrorsMiddleware.php</b> on line <b>14</b><br />
+<br />
+<b>Warning</b>:  Missing argument 1 for App\Helpers\MyFiles::__construct(), called in /var/www/public/arms/bootstrap/app.php on line 185 and defined in <b>/var/www/public/arms/app/Helpers/MyFiles.php</b> on line <b>9</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: fileName in <b>/var/www/public/arms/app/Helpers/MyFiles.php</b> on line <b>11</b><br />
+<br />
+<b>Warning</b>:  filesize(): stat failed for http://localhost/arms/public/storage/docs/1524565234Makerere-AR-67th-Graduation-Day1-21stFeb2017.pdf in <b>/var/www/public/arms/app/Controllers/Project/ProjectController.php</b> on line <b>171</b><br />
+<br />
+<b>Warning</b>:  readfile(http://localhost/arms/public/storage/docs/1524565234Makerere-AR-67th-Graduation-Day1-21stFeb2017.pdf): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in <b>/var/www/public/arms/app/Controllers/Project/ProjectController.php</b> on line <b>180</b><br />

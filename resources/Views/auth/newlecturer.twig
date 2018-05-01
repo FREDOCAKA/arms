@@ -1,0 +1,66 @@
+{% extends 'template/app.twig' %}
+
+{% block content %}
+
+
+<div class="col-md-6 offset-md-2">
+
+    <div class="authx">
+
+    <h4 class="auth-title text-center text-primary">Sign Up</h4>
+
+    <div class="alert alert-warning">Please note, this page is for lecturers only</div>
+
+        <form method="post" action="{{ path_for('auth.lecturer') }}">
+
+         <div class="form-group">
+            <label for="nameInput">Full Name</label>
+            <input type="text" class="form-control {{ errors.name ? 'is-invalid': ''}}" id="nameInput"  
+            name="name" aria-describedby="nameInput" placeholder="Enter full name" value="{{ old.name }}">
+
+             {% if errors.name %}
+                <div class="invalid-feedback">
+                    {{ errors.name | first}}
+                </div>
+             {% endif %}
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="text" class="form-control {{ errors.email ? 'is-invalid':''}}" name="email" id="exampleInputEmail1" 
+            aria-describedby="emailHelp" placeholder="Enter email" value="{{old.email}}">
+
+            {% if errors.email %}
+                <div class="invalid-feedback">
+                    {{ errors.email | first}}
+                </div>
+             {% endif %}
+
+        </div>
+
+        <div class="form-group">
+            <label for="InputPassword">Password</label>
+            <input type="password" name="password" class="form-control {{ errors.password ? 'is-invalid':'' }}"
+             id="InputPassword1" placeholder="Password">
+
+               {% if errors.password %}
+                <div class="invalid-feedback">
+                    {{ errors.password | first}}
+                </div>
+             {% endif %}
+        </div>
+
+         <div class="form-group">
+            <label for="InputPassword1">Confirm Password</label>
+            <input type="password"  name="confirm_password" class="form-control" id="InputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+
+         {{ csrf.field | raw }}
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

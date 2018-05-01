@@ -1,0 +1,60 @@
+
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+
+<h5 class="blockquote text-center text-success">Courses </h5>
+
+ <a href="{{ path_for('course.create')}}">
+  <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="tooltip" title="Add">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>  ADD
+  </button> 
+ </a>
+
+<table class="table table-sm table-hover table-bordered table-striped ">
+  <thead>
+    <tr>
+      <th scope="col col-sm-5">Title</th>
+      <th scope="col col-sm-3">Edit</th>
+      <th scope="col col-sm-3">Del</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for item in items %}
+    <tr>
+
+       <td class="col">
+            <a href="" class="text-capitalize">{{ item.course_name}}</a>
+        </td>
+
+        <td>
+        <span  data-toggle ="tooltip" title="Update">
+            <a href="{{ path_for('course.update',{id:item.id})}}" class="btn btn-success btn-xs">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+        </span>
+        </td>
+
+        <td>
+        <span  data-toggle="tooltip"  title="Delete">
+        <form method="post" action="{{path_for('course.delete',{id:item.id})}}">
+          <input type="hidden" name="_METHOD" value="DELETE">
+          {{ csrf.field | raw }}
+            <button class="btn btn-danger btn-xs" type="submit">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+          </form>
+        </span>
+        </td>
+
+     </tr>
+    {% endfor %}
+
+
+{% include 'course/pagination.twig' %}
+
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+ <form method="POST" action="{{ path_for('profile', {id:auth.user.id})}}">
+            <div class="form-group">
+                <label for="nameControlInput1">Full Name</label>
+                <input type="text" name="name" class="form-control text-capitalize" id="nameControlInput1"  
+                value="{{  auth.user.name }}">
+            </div>
+
+            <div class="form-group">
+                <label for="nameControlInput1">Email</label>
+                <input type="email" name="email" disabled class="form-control" id="emailControlInput1"  
+                value="{{ auth.user.email }}">
+            </div>
+
+            <div class="form-group">
+                <label for="stdControlInput1">Student Number </label>
+                <input type="text" disabled name="student_number" class="form-control text-capitalize" id="nameControlInput1"  
+                value="{{ auth.user.student_number }}">
+            </div>
+
+            <div class="form-group">
+                <label for="regControlInput1">Registration Number</label>
+                <input type="text" disabled name="registration_number" class="form-control text-capitalize" id="regControlInput1"
+                  value="{{ auth.user.registration_number }}">
+            </div>
+
+            <div class="form-group">
+                <label for="courseControlInput1">Course</label>
+
+                 <input type="text"  disabled class="form-control text-capitalize" id="courseControlInput1"  value="{{ course.course_name}}">
+                
+            </div>
+            <input type="hidden"  name="_METHOD" value="PUT" />
+
+            {{ csrf.field | raw }}
+
+            <button type="submit" class="btn btn-primary mb-2">Update</button>
+
+        </form>

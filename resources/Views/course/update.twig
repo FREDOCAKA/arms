@@ -1,0 +1,24 @@
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+<h5 class="text-success text-capitalize"> Update {{ course.course_name}}</h5>
+<hr>
+
+<form method="post" action="{{path_for('course.update',{id:course.id})}}">
+    <div class="form-group">
+        <label for="exampleInputtitle">Name </label>
+        <input type="text" class="form-control text-capitalize {{ errors.course_name ? 'is-invalid':'' }}" name="course_name" id="exampleInputitle" 
+        aria-describedby="emailHelp" placeholder="Enter course name" value="{{ course.course_name }}">
+        {% if errors.course_name %}
+            <div class="invalid-feedback">
+            {{ errors.course_name | first }}
+            </div>
+        {% endif %}
+    </div>
+
+<input type="hidden" name="_METHOD" value="PUT">
+{{ csrf.field | raw }}
+<button type="submit" class="btn btn-primary">Update</button>
+
+</form>
+{% endblock %}

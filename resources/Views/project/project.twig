@@ -1,0 +1,73 @@
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+
+<h5 class="blockquote text-success">Available projects 
+
+ <a href="{{ path_for('project.create')}}">
+  <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="tooltip" title="Add">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>  ADD
+  </button> 
+ </a>
+</h5>
+
+<hr>
+ {% include 'project/search.twig' %}
+
+<table class="table table-hover table-bordered table-striped table-sm">
+  <thead>
+    <tr>
+      {# <th scope="col">#</th> #}
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Status</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Del</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for project in items %}
+    <tr>
+      {# <th scope="row">{{ project.id }}</th> #}
+      <td><a href="{{ path_for('project.index')}}/{{project.id}}">{{ project.title }}</a></td>
+      <td class="text-capitalize">{{ project.name }}</td>
+      <td>
+        {% if  project.status == 1 %}
+            <small class="text-success">Active</small>
+        {% endif %}
+
+        {% if  project.status == 0 %}
+                <small class="text-muted">Approved</small>
+        {% endif %}
+      </td>
+
+      <td>
+      <span  data-toggle ="tooltip" title="Update">
+          <a href="{{path_for('project.update',{id:project.id })}}" class="btn btn-success btn-xs">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+      </span>
+      </td>
+
+      <td>
+      <span  data-toggle="tooltip"  title="Delete">
+        <form method="post" action="{{path_for('project.show',{id:project.id})}}">
+          <input type="hidden" name="_METHOD" value="DELETE">
+          {{ csrf.field | raw }}
+            <button class="btn btn-danger btn-xs" type="submit">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+          </form>
+        </span>
+      </td>
+
+    </tr>
+ {% endfor %}
+
+{# {% include 'template/partial/pagination.twig' %} #}
+
+  </tbody>
+</table>
+
+{% endblock %}

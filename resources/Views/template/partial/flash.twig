@@ -1,0 +1,27 @@
+
+{% if flash.getMessage('success') %}
+<div class="row">
+    <div class="col-md-8 offset-md-1">
+        <div class="flash" style="margin-top:30px;">
+            <div class="alert alert-success">
+               {{ flash.getMessage('success') | first }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% if flash.getMessage('danger') %}
+<div class="row">
+    <div class="col-md-8 offset-md-1">
+        <div class="flash" style="margin-top:30px;">
+            <div class="alert alert-danger">
+               {{ flash.getMessage('danger') | first }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}

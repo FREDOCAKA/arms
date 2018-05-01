@@ -1,0 +1,56 @@
+
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+
+<h5 class="blockquote text-left text-success">Students </h5>
+
+{% include 'student/search.twig' %}
+
+<table class="table table-sm  table-bordered table-hover text-capitalize">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">course</th>
+      <th scope="col">Reg/No.</th>
+      <th scope="col">Action.</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+   {% for item in items %}
+    <tr>
+    
+      <th scope="row">
+      {{ list }}
+      </th>
+
+      <td> <a href="{{ path_for('student.show',{ id:item.id}) }}">{{ item.name }}</a></td>
+
+      <td>{{ item.course_name }}</td>
+      <td>{{ item.registration_number}}</td>
+
+      <td scope="row">
+        <form class="" method="post" action="{{ path_for('student.delete',{id:item.id})}}">
+
+        {{ csrf.field | raw }}
+        <input type="hidden" name="_METHOD" value="delete">
+            <button type="submit" onclick=" return confirm('Are you sure you want to delete this student')" class="btn btn-danger btn-xs">
+                <span class="fa-icon">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                 </span>
+            </button>
+        </form>
+      </td> 
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% include 'student/pagination.twig' %}
+
+
+{% endblock %}

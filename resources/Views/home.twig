@@ -1,0 +1,65 @@
+{% extends 'template/app.twig' %}
+
+{% block content %}
+
+
+<div class="col-md-8"> 
+
+{# search form starts #}
+<form class="hm-search">
+
+  <div class="form-row">
+
+    <div class="col-7">
+      <input type="text" class="form-control" placeholder="">
+    </div>
+    <div class="col">
+
+    <div class="form-group">
+
+        <select class="form-control" id="exampleFormControlSelect1">
+        <option value=""> Category</option>
+        <option>Computer Networks</option>
+        <option>SOftware Engineering</option>
+        <option>Telecommunication</option>
+        <option>Digital Electronic</option>
+        </select>
+    </div>
+
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" >Search</button>
+    </div>
+
+  </div>{# row #}
+</form>
+{# search form ends #}
+<hr>
+
+<h5><a href="">GSM based Substation Monitoring and Control System {{ auth.user.name }}  {{ auth.role }}</a></h5>
+<ul class="list-inline text-muted">
+<small>
+  <li class="list-inline-item"><i class="fa fa-briefcase fa-xs" aria-hidden="true"></i>  Computer Engineering</li>
+  <li class="list-inline-item"><i class="fa fa-align-justify fa-xs" aria-hidden="true"></i>  Networking</li>
+  <li class="list-inline-item "><i class="fa fa-clock fa-xs" aria-hidden="true"></i>  2018</li>
+  <li class="list-inline-item"><a href="">Readmore</a></li>
+  </small>
+</ul>
+<hr>
+
+<h5><a href="">GSM based Substation Monitoring and Control System</a></h5>
+<ul class="list-inline text-muted">
+<small>
+  <li class="list-inline-item"><i class="fa fa-briefcase fa-xs" aria-hidden="true"></i>  Computer Engineering</li>
+  <li class="list-inline-item"><i class="fa fa-align-justify fa-xs" aria-hidden="true"></i>  Networking</li>
+  <li class="list-inline-item "><i class="fa fa-clock fa-xs" aria-hidden="true"></i>  2018</li>
+  <li class="list-inline-item"><a href="">Readmore</a></li>
+  </small>
+</ul>
+<hr>
+</div> {# col-md-8 #}
+
+
+{% endblock %}
+
+

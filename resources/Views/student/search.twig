@@ -1,0 +1,32 @@
+
+<form class="hm-search" method="post" action="{{ path_for('student.search') }}">
+
+  <div class="form-row">
+
+    <div class="col">
+      <input type="text" class="form-control" name="name" placeholder="Full Name" value="">
+    </div>
+
+    <div class="col">
+      <input type="text" name="registration_number" class="form-control" placeholder="Registration Number" value="">
+    </div>
+
+
+    <div class="col">
+    <div class="form-group">
+        <select name="course" class="form-control text-capitalize" id="exampleFormControlSelect1">
+        <option value=""> Category</option>
+        {% for item in helper.course %}
+        <option value="{{ item.id }}">{{ item.course_name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    </div>
+    <div class="col">
+    {{ csrf.field | raw}}
+      <button type="submit" class="btn btn-primary " >Search</button>
+    </div>
+
+  </div>{# row #}
+</form>

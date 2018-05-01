@@ -1,0 +1,15 @@
+{% extends 'template/app.twig' %}
+
+    {% block content %}
+
+        {% include 'template/partial/sidebar.twig' %}
+
+            <div class="col-md-9  col-lay">
+
+                {% block maincontent %}
+                
+                
+                {% endblock %}
+
+            </div>
+    {% endblock %}

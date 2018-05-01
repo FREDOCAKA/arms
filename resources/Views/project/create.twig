@@ -1,0 +1,62 @@
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+<h4 class="text-primary">Create New Project </h4>
+
+<form method="post" action="{{ path_for('project.create') }}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleInputtitle">Title </label>
+        <input type="text" class="form-control {{ errors.title ? 'is-invalid':'' }}" name="title" id="exampleInputitle" 
+        aria-describedby="emailHelp" placeholder="Enter project title" value="{{ old.title }}">
+        {% if errors.title %}
+            <div class="invalid-feedback">
+            {{ errors.title | first }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Category</label>
+    <select class="form-control text-capitalize {{ errors.category ? 'is-invalid':'' }} " name= "category" 
+    id="exampleFormControlSelect1">
+    <option value="">Select Category</option>
+      {% for item in helper.category  %}
+      <option value= "{{ item.id }}" class"">{{ item.name }}</option>
+      {% endfor %}
+     
+    </select>
+
+     {% if errors.category %}
+            <div class="invalid-feedback">
+            {{ errors.category | first }}
+            </div>
+        {% endif %}
+  </div>
+
+    <div class="form-group">
+        <label for="bodyInput"> Body</label>
+        <textarea class="form-control {{ errors.body ? 'is-invalid':'' }}" name="body" for="bodyInput" >
+        {{ old.body }}
+        </textarea>
+        {% if errors.body %}
+            <div class="invalid-feedback">
+            {{ errors.body | first }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlFile1">Upload a file</label>
+    <input type="file" name="file" class="form-control {{ errors.file ? 'is-invalid': '' }}" id="exampleFormControlFile1" >
+     {% if errors.file %}
+            <div class="invalid-feedback">
+            {{ errors.file | first }}
+            </div>
+        {% endif %}
+   </div>
+
+<button type="submit" class="btn btn-primary">Login</button>
+
+{{ csrf.field | raw }}
+</form>
+{% endblock %}

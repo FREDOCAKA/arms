@@ -1,0 +1,30 @@
+
+<form class="hm-search" method="post" action="{{ path_for('lecturer.search') }}">
+
+  <div class="form-row">
+
+    <div class="col">
+      <input type="text" class="form-control" name="name" placeholder="Full Name" value="{{ old.name }}">
+    </div>
+
+    <div class="col">
+      <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old.email }}">
+    </div>
+
+     <div class="col">
+    <div class="form-group">
+        <select name="status" class="form-control text-capitalize" id="exampleFormControlSelect1">
+        <option value=""> Status</option>
+        <option value="1">Approved</option>
+         <option value="0">Pending</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="col">
+    {{ csrf.field | raw}}
+      <button type="submit" class="btn btn-primary " >Search</button>
+    </div>
+
+  </div>{# row #}
+</form>

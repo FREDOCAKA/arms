@@ -1,0 +1,23 @@
+{% extends 'template/main.twig' %}
+
+{% block maincontent %}
+<h5 class="text-primary"> New Category</h5>
+<hr>
+
+<form method="post" action="{{ path_for('category.create') }}">
+    <div class="form-group">
+        <label for="exampleInputtitle">Name </label>
+        <input type="text" class="form-control {{ errors.name ? 'is-invalid':'' }}" name="name" id="exampleInputitle" 
+        aria-describedby="emailHelp" placeholder="Enter category name" value="{{ old.name }}">
+        {% if errors.name %}
+            <div class="invalid-feedback">
+            {{ errors.name | first }}
+            </div>
+        {% endif %}
+    </div>
+
+<button type="submit" class="btn btn-primary">Create</button>
+
+{{ csrf.field | raw }}
+</form>
+{% endblock %}

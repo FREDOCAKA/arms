@@ -1,0 +1,17 @@
+{% extends 'template/main.twig' %}
+
+    {% block maincontent %}
+
+    <div class="profile-update">
+        <h4 class="lead text-muted text-capitalize">{{ auth.user.name }} Profile </h4>
+
+        {% if auth.user.role == 1 %}
+            {% include 'profile/partials/student.twig' %}
+        {% endif %}
+        {% if auth.user.role == 2 %}
+            {% include 'profile/partials/lecturer.twig' %}
+        {% else %}
+        {% endif %}
+       
+    </div>
+    {% endblock %}
