@@ -3,6 +3,7 @@
     <a href="{{ path_for('dashboard')}}" class="list-group-item list-group-item-action">Dashboard</a>
     <a href="{{ path_for('profile',{id:auth.user.id})}}" class="list-group-item list-group-item-action">Profile</a>
     <a href="{{ path_for('password')}}" class="list-group-item list-group-item-action"> Reset Password</a>
+       <a href="{{ path_for('student.index')}}" class="list-group-item list-group-item-action"> Students</a>
 
     {% if auth.user.role == 1 %}
       <a href="{{ path_for('password')}}" class="list-group-item list-group-item-action"> Project Partner</a>
@@ -12,7 +13,7 @@
       <a href="{{ path_for('project.index')}}" class="list-group-item list-group-item-action"> Projects</a>
       <a href="{{ path_for('category.index')}}" class="list-group-item list-group-item-action"> Category</a>
       <a href="{{ path_for('course.index')}}" class="list-group-item list-group-item-action"> Courses</a>
-      <a href="{{ path_for('student.index')}}" class="list-group-item list-group-item-action"> Students</a>
+   
       <a href="{{ path_for('lecturer.index')}}" class="list-group-item list-group-item-action"> Lecturers</a>
     {% endif %}
   </div>

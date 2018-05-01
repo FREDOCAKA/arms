@@ -21,7 +21,7 @@ class StudentController extends Controller
     public function index($request,$response,$args)
     {
         $args = $this->db->table('courses')->rightJoin('students','courses.id','=','students.course_id')
-                              ->paginate(13,['*'],'page',$request->getParam('page'));
+                              ->paginate(0,['*'],'page',$request->getParam('page'));
 
 
         return $this->view->render($response,'admin/student/index.twig',[

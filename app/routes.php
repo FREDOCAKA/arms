@@ -55,10 +55,8 @@ $this->post('/project','ProjectController:search')->setName('project.search');
   /**
    * Student routes
    */
-  $this->get('/students','StudentController:index')->setName('student.index');
-  $this->get('/student/{id}','StudentController:show')->setName('student.show');
   $this->delete('/student/{id}','StudentController:delete')->setName('student.delete');
-  $this->post('/students','StudentController:search')->setName('student.search');
+
 
     /**
    * Student routes
@@ -92,6 +90,11 @@ $app->group('', function(){
     //Reset password
     $this->get('/password','ProfileController:getPassword')->setName('password');
     $this->put('/password','ProfileController:updatePassword');
+
+    //student routes
+    $this->post('/students','StudentController:search')->setName('student.search');
+    $this->get('/students','StudentController:index')->setName('student.index');
+    $this->get('/student/{id}','StudentController:show')->setName('student.show');
 
 
 })->add( new AuthMiddleware($container));

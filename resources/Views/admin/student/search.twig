@@ -15,7 +15,7 @@
     <div class="col">
     <div class="form-group">
         <select name="course" class="form-control text-capitalize" id="exampleFormControlSelect1">
-        <option value=""> Category</option>
+        <option value=""> All category</option>
         {% for item in helper.course %}
         <option value="{{ item.id }}">{{ item.course_name }}</option>
         {% endfor %}

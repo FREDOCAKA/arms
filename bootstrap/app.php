@@ -70,7 +70,7 @@ $container['view'] = function($container){
     $view->getEnvironment()->addGlobal('auth',[
         'user'    => $container->auth->user(),
         'check'   => $container->auth->check(),
-        'role'    => $container->auth->role()
+        'role'    => $container->auth->role(),
     ]);
 
     //flash messages
