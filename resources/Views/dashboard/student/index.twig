@@ -1,0 +1,51 @@
+<p> <span class="text-primary header-title"> {{ auth.user.name }}</span> 
+
+<span class="pull-right text-uppercase text-success">RN: {{ auth.user.registration_number }}</span>
+</p>
+<hr>
+
+<div class="card">
+  <div class="card-heade">
+    <span class="text-primar"></span>
+  </div>
+  <div class="card-body">
+    <h6 class="card-title text-warning"><strong>Project Partner</strong></h6>
+    <div class="alert alert-warning" role="alert">
+       Ooops {{ auth.user.name }}!  You have no project partner 
+       <a href="alert-link" class="text-warning"> add a partner</a>
+    </div>
+    
+  </div>
+</div>
+
+<br>
+
+<div class="card">
+  <div class="card-heade">
+    <span class="text-primar"></span>
+  </div>
+  <div class="card-body">
+    <h6 class="card-title text-success">Project supervisor</h6>
+    <div class="alert alert-success" role="alert">
+       Ooops {{ auth.user.name }}!  You have no project supervisor
+    </div>
+    
+  </div>
+</div>
+
+
+
+<br>
+
+<div class="card">
+  <div class="card-heade">
+    <span class="text-primar"></span>
+  </div>
+  <div class="card-body">
+    <h6 class="card-title text-danger">Final Year Project</h6>
+    <div class="alert alert-danger" role="alert">
+      You have no project  project
+    </div>
+    
+  </div>
+</div>
