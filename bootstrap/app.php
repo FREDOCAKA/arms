@@ -171,6 +171,10 @@ $container['view'] = function($container){
        return new \App\Controllers\Project\CategoryController($container);
    };
 
+   $container['ProjectPartnerController'] = function($container){
+        return new \App\Controllers\User\ProjectPartnerController($container);
+   };
+
    /**
     * Student Controller
     */

@@ -15,7 +15,11 @@
       <th scope="col">Name</th>
       <th scope="col">course</th>
       <th scope="col">Reg/No.</th>
-      <th scope="col">Action.</th>
+      <th scope="col">Action</th>
+      
+      {% if auth.user.role == 3 %}
+      <th scope="col">.</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -33,37 +37,49 @@
       <td>{{ item.course_name }}</td>
       <td>{{ item.registration_number}}</td>
 
-      <td scope="row">
 
       {% if auth.user.role == 3 %}
-        <form class="" method="post" action="{{ path_for('student.delete',{id:item.id})}}">
 
-        {{ csrf.field | raw }}
-        <input type="hidden" name="_METHOD" value="delete">
-            <button type="submit" onclick=" return confirm('Are you sure you want to delete this student')" 
-            class="btn btn-danger btn-xs">
-                <span class="fa-icon">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                 </span>
-            </button>
-        </form>
+        <td scope="row">
+
+          <form class="" method="post" action="{{ path_for('student.delete',{id:item.id})}}">
+          {{ csrf.field | raw }}
+          <input type="hidden" name="_METHOD" value="delete">
+              <button type="submit" onclick=" return confirm('Are you sure you want to delete this student')" 
+              class="btn btn-danger btn-xs">
+                  <span class="fa-icon">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </span>
+              </button>
+          </form>
+          
+        </td>
+
+
+        <td>
+          <a href="" class="btn btn-primary btn-xs">
+               <i class="fa fa-plus" aria-hidden="true"></i>
+          </a>
+        </td>
+
         {% endif %}
+      
+       {% if auth.user.role == 1 %}
+        <td>
 
-         {% if auth.user.role == 1 %}
-        <form class="" method="post" action="">
+          <form class="" method="post" action="{{ path_for('partner.add',{id:item.id})}}">
+          {{ csrf.field | raw }}
+              <button type="submit" onclick=" return confirm('Are you sure you want to  add {{ item.name }}' as your project partner)" class="btn btn-success btn-xs">
+                  <span class="fa-icon">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                  </span>
+              </button>
+          </form>
 
-        {{ csrf.field | raw }}
-        <input type="hidden" name="_METHOD" value="delete">
-            <button type="submit" onclick=" return confirm('Are you sure you want to  add {{ item.name }}' as your project partner)" class="btn btn-success btn-xs">
-                <span class="fa-icon">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                 </span>
-            </button>
-        </form>
-        {% endif %}
+        </td> 
+       {% endif %}
 
-
-      </td> 
+  
     </tr>
     {% endfor %}
    
