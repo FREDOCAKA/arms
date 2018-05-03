@@ -7,7 +7,7 @@ use App\Middleware\GuestMiddleware;
 use App\Middleware\AdminMiddleware;
 
 $app->get('/', 'HomeController:index')->setName('home');
-$app->post('/studentm/partner/{id}','ProjectPartnerController:addPartner')->setName('partner.add');
+$app->post('/student/partner/{id}','ProjectPartnerController:addPartner')->setName('partner.add');
 
 /******************************************************* 
 *

@@ -81,7 +81,7 @@ class StudentController extends Controller
         $reg_no = $request->getParam('registration_number');
         $course = $request->getParam('course');
 
-       $query = $this->db->table('students')->join('courses','courses.id','=','students.course_id')
+       $query = $this->db->table('courses')->join('students','courses.id','=','students.course_id')
                                             ->where('name', 'like',"%$name%")
                                             ->where('registration_number','like',"%$reg_no%")
                                             ->where('course_id','like',"%$course%")
