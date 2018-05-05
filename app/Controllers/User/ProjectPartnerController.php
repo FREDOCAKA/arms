@@ -86,13 +86,30 @@ class ProjectPartnerController extends Controller
             elseif($query <= 5)
 
             {
-                ProjectPartner::create([
-                    'first_id' => trim($current_user->student_number),
-                    'second_id' => trim($partner->student_number),
-                ]);
+                
+                //check if the current student is in any project group
+                $select_student = ProjectPartner::where('second_id',$partner->student_number)->count();
 
-                $this->container->flash->addMessage('success','Congrats! '.ucwords($partner->name).' is your new project partner');
-                return  $response->withRedirect($this->router->pathFor('student.index'));
+                if($select_student == 0)
+                {
+                    echo  $select_student;
+                    die();
+                    ProjectPartner::create([
+                        'first_id' => trim($current_user->student_number),
+                        'second_id' => trim($partner->student_number),
+                    ]);
+    
+                    $this->container->flash->addMessage('success','Congrats! '.ucwords($partner->name).' is your new project partner');
+                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                }
+
+                else 
+                {
+                    $this->container->flash->addMessage('danger','You have already added '.ucwords($partner->name).' as your project partner');
+                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                }
+
+               
             }
                 
 
