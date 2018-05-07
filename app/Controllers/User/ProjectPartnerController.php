@@ -42,13 +42,14 @@ class ProjectPartnerController extends Controller
         {
             $query = ProjectPartner::where('first_id',$current_user->student_number)->count();
 
-            //check if the current student is the project leader
+            /**
+             * is the current login student a project leader
+             */
             if(!$query)
             {
                 //check if the current student is in any project group
                 $check_current_student = ProjectPartner::where('second_id',$current_user->student_number)->count();
 
-                
                 /**
                  *  current student have a project partner
                  */
@@ -65,16 +66,13 @@ class ProjectPartnerController extends Controller
                                                 ->count();
                    
                     /**
-                     * Current student do not have a project partner
+                     * is the selected student has a project group
                      */                     
                      if(!$select_partner)
                      {
                         return $this->createProject($response,$current_user,$partner);
                        
                      }
-                     /**
-                      * Current student have a project partner
-                      */
                      else
                      { 
                          return $this->customRedirect($response,$current_user,ucwords($partner->name).' already have a project partner');
@@ -107,12 +105,12 @@ class ProjectPartnerController extends Controller
                     
                     //selected student is  already have  in a group
                     else 
-                    {
+                    {;
                         /**
                          * is selected student  a project partner of the current student
                          */
-                        $isPartner = ProjectPartner::where('second_id',$partner->student_number)
-                                                    ->where('first_id',$current_user->student_number)->count();
+
+                        $isPartner  = $this->isPartner($partner,$current_user);
                         
                         if($isPartner)
                         {
@@ -176,6 +174,25 @@ class ProjectPartnerController extends Controller
         return  $response->withRedirect($this->router->pathFor('student.index'));
 
     }
+
+
+    /**
+     * This method checks  if the selected student is a  project partners  for the current login student
+     *
+     * @param [array] $partner
+     * @param [array] $current_user
+     * @return boolean
+     */
+    public function isPartner($partner,$current_user)
+    {
+       
+        $isPartner = ProjectPartner::where('second_id',$partner->student_number)
+        ->where('first_id',$current_user->student_number)->get();
+
+        return $isPartner;
+    }
+
+
 
 
 
