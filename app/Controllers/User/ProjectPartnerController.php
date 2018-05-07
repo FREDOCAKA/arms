@@ -36,9 +36,6 @@ class ProjectPartnerController extends Controller
         //pulling current student
         $current_user = $this->auth->user();
 
-        // var_dump($partner->course_id); 
-        // var_dump($current_user->course_id);
-        // die();
 
         //checking if the project partner is offering the same programme
         if($partner->course_id ==  $current_user->course_id)
@@ -51,65 +48,91 @@ class ProjectPartnerController extends Controller
                 //check if the current student is in any project group
                 $check_current_student = ProjectPartner::where('second_id',$current_user->student_number)->count();
 
-        
+                
+                /**
+                 *  current student have a project partner
+                 */
                 if($check_current_student)
                 {
-                    $this->container->flash->addMessage('danger','Hello '.ucwords($current_user->name).', you already have a project partner');
-                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                   return $this->customRedirect($response,$current_user, ' you  already have a project group');
                 }
 
                 else
                 {
-                    //check if the selected student is already in a group
+                    
                     $select_partner = ProjectPartner::where('first_id',$partner->student_number)
                                                 ->orWhere('second_id',$partner->student_number)
                                                 ->count();
+                   
+                    /**
+                     * Current student do not have a project partner
+                     */                     
                      if(!$select_partner)
                      {
-                            ProjectPartner::create([
-                                'first_id' => trim($current_user->student_number),
-                                'second_id' => trim($partner->student_number),
-                            ]);
-        
-                            $this->container->flash->addMessage('success','Congrats! '.ucwords($partner->name).' is your new project partner');
-                            return  $response->withRedirect($this->router->pathFor('student.index'));
+                        return $this->createProject($response,$current_user,$partner);
+                       
                      }
-                    // select student already have a project partner
-                 
-                    $this->container->flash->addMessage('danger','Hello '.ucwords($current_user->name).'You already have a project partner');
-                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                     /**
+                      * Current student have a project partner
+                      */
+                     else
+                     { 
+                         return $this->customRedirect($response,$current_user,ucwords($partner->name).' already have a project partner');
+                     }
 
                 }
 
             }
 
-            elseif($query <= 5)
+            /**
+             * CUrrent student is a project leader
+             */
+            elseif($query)
 
             {
-                
-                //check if the current student is in any project group
-                $select_student = ProjectPartner::where('second_id',$partner->student_number)->count();
-
-                if($select_student == 0)
+                /**
+                 * Checking for number of project partners for a project
+                 */
+                if($query<5)
                 {
-                    echo  $select_student;
-                    die();
-                    ProjectPartner::create([
-                        'first_id' => trim($current_user->student_number),
-                        'second_id' => trim($partner->student_number),
-                    ]);
+                     $select_student = ProjectPartner::where('second_id',$partner->student_number)->count();
+                    
+                     /**
+                      * Is selected student already have a project partner
+                      */
+                    if($select_student == 0)
+                    {
+                      return  $this->createProject($response,$current_user,$partner);
+                    }
+                    
+                    //selected student is  already have  in a group
+                    else 
+                    {
+                        /**
+                         * is selected student  a project partner of the current student
+                         */
+                        $isPartner = ProjectPartner::where('second_id',$partner->student_number)
+                                                    ->where('first_id',$current_user->student_number)->count();
+                        
+                        if($isPartner)
+                        {
+                            return $this->customRedirect($response,$current_user, ucwords($partner->name).' is  your project partner');
+                        }
+                        else{
+                            return $this->customRedirect($response,$current_user, ucwords($partner->name).' is  already in a group');
+                        }     
     
-                    $this->container->flash->addMessage('success','Congrats! '.ucwords($partner->name).' is your new project partner');
-                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                    }
                 }
 
-                else 
+                else
+
                 {
-                    $this->container->flash->addMessage('danger','You have already added '.ucwords($partner->name).' as your project partner');
-                    return  $response->withRedirect($this->router->pathFor('student.index'));
+                    return $this->customRedirect($response,$current_user,'Maximum of 5 partners are allowed to work on a project');
                 }
-
+                
                
+     
             }
                 
 
@@ -121,13 +144,37 @@ class ProjectPartnerController extends Controller
          */
          
         {
-             //adding flash message
-               $this->container->flash->addMessage('danger', ucwords($partner->name).' is  offering a different programme');
-        
-                return $response->withRedirect($this->router->pathFor('student.index'));
+            return $this->customRedirect($response,$current_user,ucwords($partner->name).' is  offering a different programme');                                                                                                                                                  
         }
         
        
+    }
+
+
+    /**
+     * This method creates a new partner
+     *
+     * @param [type] $current_user
+     * @param [type] $partner
+     * @return void
+     */
+    public function createProject($response, $current_user,$partner)
+    {
+
+        ProjectPartner::create([
+            'first_id' => trim($current_user->student_number),
+            'second_id' => trim($partner->student_number),
+        ]);
+
+        $this->container->flash->addMessage('success','Congrats! '.ucwords($partner->name).' is your new project partner');
+        return $response->withRedirect($this->router->pathFor('student.index'));
+    }
+
+    public function customRedirect($response,$current_user,$message)
+    {
+        $this->container->flash->addMessage('danger','Dear '.ucwords($current_user->name).', '.$message);
+        return  $response->withRedirect($this->router->pathFor('student.index'));
+
     }
 
 
