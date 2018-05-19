@@ -177,7 +177,7 @@ class ProjectPartnerController extends Controller
 
 
     /**
-     * This method checks  if the selected student is a  project partners  for the current login student
+     * This method checks  if the selected student is a  project partner  for the current login student
      *
      * @param [array] $partner
      * @param [array] $current_user
@@ -187,9 +187,29 @@ class ProjectPartnerController extends Controller
     {
        
         $isPartner = ProjectPartner::where('second_id',$partner->student_number)
-        ->where('first_id',$current_user->student_number)->get();
+                                ->where('first_id',$current_user->student_number)->get();
 
         return $isPartner;
+    }
+
+    /**
+     * This method remove student project partner 
+     *
+     * @param [type] $request
+     * @param [type] $response
+     * @return void
+     */
+    public function deletePartner($request,$response,$args)
+    {
+
+        $delete = ProjectPartner::find($args['id']);
+        $delete->delete();
+
+        $this->flash->addMessage('danger','Operation successfull');
+
+        return $response->withRedirect($this->router->pathFor('dashboard'));
+
+       
     }
 
 

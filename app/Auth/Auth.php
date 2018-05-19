@@ -170,4 +170,17 @@ class Auth
 
         return false;
     }
+    
+    public function isStudent()
+    {
+        $student = Student::find($_SESSION['user']);
+        
+        if($student->role == '1')
+        {
+            return true;
+        }
+
+        return false;
+
+    }
 }

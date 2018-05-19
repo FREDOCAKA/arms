@@ -24,6 +24,8 @@
   </thead>
   <tbody>
 
+  {{ isAvailable }}
+
 
    {% for item in items %}
     <tr>
@@ -70,7 +72,7 @@
           {{ csrf.field | raw }}
               <button type="submit" onclick=" return confirm('Are you sure you want to  add {{ item.name }}' as your project partner)" class="btn btn-success btn-xs">
                   <span class="fa-icon">
-                      <i class="fa fa-check" aria-hidden="true"></i> {{ item.id }}
+                      <i class="fa fa-check" aria-hidden="true"></i>
                   </span>
               </button>
           </form>

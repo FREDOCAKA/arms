@@ -9,11 +9,68 @@
     <span class="text-primar"></span>
   </div>
   <div class="card-body">
-    <h6 class="card-title text-warning"><strong>Project Partner</strong></h6>
-    <div class="alert alert-warning" role="alert">
-       Ooops {{ auth.user.name }}!  You have no project partner 
+    <h6 class="card-title text-primary"><strong>Project Partner</strong></h6>
+
+  <table class="table">
+  <thead class="">
+    <tr>
+    </tr>
+  </thead>
+  <tbody class="text-capitalize">
+
+{# {{ leader | json_encode }} #}
+  {% if leader.name is empty  %}
+   <tr>
+      <th scope="row">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      </th>
+      <td>{{ leader.name  }}</td>
+      <td>{{ leader.student_number}}</td>
+      <td>
+        <button class="btn btn-danger btn-sm"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+          Del
+        </button>
+      </td>
+    </tr>
+
+    {% else %}
+    {% endif %}
+
+
+  {% for partner in partners %}
+  {% if  partner.student_number != auth.user.student_number %}
+    <tr>
+      <th scope="row">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      </th>
+      <td>{{ partner.name  }}</td>
+      <td>{{ partner.student_number}}</td>
+      <td>
+
+        <form class="" method="POST" action="{{ path_for('partner.delete',{id:partner.id}) }}">
+          <input type="hidden" name="_METHOD" value="delete">
+          <button class="btn btn-danger btn-sm" type="submit">
+            <i class="fa fa-minus-circle" aria-hidden="true"></i>
+              Del
+          </button>
+
+          {{ csrf.field | raw}}
+        </form>
+
+      </td>
+    </tr>
+    {% endif %} 
+
+    {% endfor %}
+  </tbody>
+</table>
+ {% if partners == 0%}
+
+    <div class="alert alert-primary" role="alert">
+       Ooops {{ auth.user.name }}!  You have no project partner msmssm
        <a href="alert-link" class="text-warning"> add a partner</a>
     </div>
+   {% endif %}
     
   </div>
 </div>

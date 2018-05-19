@@ -6,7 +6,7 @@
        <a href="{{ path_for('student.index')}}" class="list-group-item list-group-item-action"> Students</a>
 
     {% if auth.user.role == 1 %}
-      <a href="{{ path_for('password')}}" class="list-group-item list-group-item-action"> Project Partner</a>
+      <a href="{{ path_for('password')}}" class="list-group-item list-group-item-action"> Change Password</a>
     {% endif %}
 
     {% if auth.user.role ==3 %}

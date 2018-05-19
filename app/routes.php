@@ -8,6 +8,7 @@ use App\Middleware\AdminMiddleware;
 
 $app->get('/', 'HomeController:index')->setName('home');
 $app->post('/student/partner/{id}','ProjectPartnerController:addPartner')->setName('partner.add');
+$app->delete('/student/partner/{id}','ProjectPartnerController:deletePartner')->setName('partner.delete');
 
 /******************************************************* 
 *

@@ -2,9 +2,12 @@
 
 namespace App\Controllers\User;
 
-use App\Controllers\Controller;
 
 use App\Models\Student;
+use App\Controllers\Controller;
+use App\Models\Project\ProjectPartner;
+
+
 
 class StudentController extends Controller 
 
@@ -77,6 +80,10 @@ class StudentController extends Controller
      */
     public function search($request, $response, $args)
     {
+
+        /**
+         * Get fields
+         */
         $name   = $request->getParam('name');
         $reg_no = $request->getParam('registration_number');
         $course = $request->getParam('course');
@@ -89,8 +96,9 @@ class StudentController extends Controller
                                             // paginate(5,['*'],'page',$request->getParam('page'));
 
        return $this->view->render($response,'admin/student/index.twig',[
-           'items' => $query
+           'items' => $query,
        ]);
     }
+
 
 }
