@@ -76,7 +76,7 @@ $container['view'] = function($container){
     //flash messages
     $view->getEnvironment()->addGlobal('flash',$container->flash);
     $view->getEnvironment()->addGlobal('links',$container->links);
-
+   
     $view->getEnvironment()->addGlobal('helper',[
         'category' => $container->helper->allCategory(),
         'project'  => $container->helper->projectCategory(),

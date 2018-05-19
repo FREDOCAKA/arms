@@ -26,9 +26,15 @@ class HomeController extends Controller
     public function getDashboard($request,$response,$args)
     {
 
+
+        //Check if the login student has a project partner
+        $available =  ProjectPartner::where('first_id',$this->auth->user()->student_number)
+                         ->orWhere('second_id',$this->auth->user()->student_number)->get();
+       
+
         //select current login student
         $first_id = ProjectPartner::where('first_id',$this->auth->user()->student_number)->count();
-        $second_id = ProjectPartner::where('second_id',$this->auth->user()->student_number)->count();
+       
 
         //check project leader
         if($first_id > 0)
@@ -39,7 +45,7 @@ class HomeController extends Controller
                         ->where('first_id','=',$this->auth->user()->student_number)->get();
 
             $this->leader = $partners;
-            
+
             // die();
         }
 
@@ -80,15 +86,15 @@ class HomeController extends Controller
             }
 
             
-        }
-        
-
-      
+        }        
         return $this->view->render($response,'dashboard/dashboard.twig',[
             'partners' => $partners,
             'leader'  => $this->leader[0],
+            'available' => $available
         ]);
     }
+    
+   
 
 }
 

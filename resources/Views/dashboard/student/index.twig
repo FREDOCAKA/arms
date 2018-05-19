@@ -18,8 +18,7 @@
   </thead>
   <tbody class="text-capitalize">
 
-{# {{ leader | json_encode }} #}
-  {% if leader.name is empty  %}
+  {% if leader.name is empty  and available is not empty  %}
    <tr>
       <th scope="row">
       <i class="fa fa-check" aria-hidden="true"></i>
