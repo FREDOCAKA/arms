@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<div class="col-md-8"> 
+<div class="col-md-10"> 
 
 {# search form starts #}
 <form class="hm-search">
@@ -36,28 +36,23 @@
 {# search form ends #}
 <hr>
 
-<h5><a href="">GSM based Substation Monitoring and Control System {{ auth.user.name }}  {{ auth.role }}</a></h5>
-<ul class="list-inline text-muted">
+{% for item in items %}
+<h5><a href="{{path_for('home.show',{id:item.id})}}">{{ item.title}}</a></h5>
+<ul class="list-inline">
 <small>
-  <li class="list-inline-item"><i class="fa fa-briefcase fa-xs" aria-hidden="true"></i>  Computer Engineering</li>
-  <li class="list-inline-item"><i class="fa fa-align-justify fa-xs" aria-hidden="true"></i>  Networking</li>
-  <li class="list-inline-item "><i class="fa fa-clock fa-xs" aria-hidden="true"></i>  2018</li>
-  <li class="list-inline-item"><a href="">Readmore</a></li>
+  <li class="list-inline-item text-capitalize"><i class="fa fa-briefcase fa-xs" aria-hidden="true"></i> {{ item.name }}</li>
+  <li class="list-inline-item text-success"><i class="fa fa-certificate" aria-hidden="true"></i> Available </li>
+  <li class="list-inline-item "><i class="fa fa-clock-o" aria-hidden="true"></i> {{ item.created_at | date("y-m-d") }}</li>
+  
   </small>
 </ul>
 <hr>
 
-<h5><a href="">GSM based Substation Monitoring and Control System</a></h5>
-<ul class="list-inline text-muted">
-<small>
-  <li class="list-inline-item"><i class="fa fa-briefcase fa-xs" aria-hidden="true"></i>  Computer Engineering</li>
-  <li class="list-inline-item"><i class="fa fa-align-justify fa-xs" aria-hidden="true"></i>  Networking</li>
-  <li class="list-inline-item "><i class="fa fa-clock fa-xs" aria-hidden="true"></i>  2018</li>
-  <li class="list-inline-item"><a href="">Readmore</a></li>
-  </small>
-</ul>
-<hr>
+{% endfor %}
+{% include 'home_pagination.twig' %}
+
 </div> {# col-md-8 #}
+
 
 
 {% endblock %}

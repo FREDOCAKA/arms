@@ -141,6 +141,14 @@ $container['view'] = function($container){
       return new \App\Controllers\AuthController\SignupController($container);
   };
 
+  /**
+   * DashboardController
+   */
+  $container['DashboardController'] = function($container)
+  {
+      return new App\Controllers\DashboardController($container);
+  };
+
 /**
  * Profile controller
  */
@@ -231,6 +239,7 @@ $container['MyFiles'] = function($container){
  $app->add( new \App\Middleware\InputErrorsMiddleware($container));
  $app->add( new \App\Middleware\OldInputMiddleware($container));
  $app->add( new \App\Middleware\CsrfViewMiddleware($container));
+ $app->add( new \App\Middleware\StudentMiddleware($container));
 
  
  $app->add($container->csrf);

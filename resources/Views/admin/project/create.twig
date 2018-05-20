@@ -35,7 +35,7 @@
 
     <div class="form-group">
         <label for="bodyInput"> Body</label>
-        <textarea class="form-control {{ errors.body ? 'is-invalid':'' }}" name="body" for="bodyInput" >
+        <textarea rows ="15" class="form-control {{ errors.body ? 'is-invalid':'' }}" name="body" for="bodyInput" >
         {{ old.body }}
         </textarea>
         {% if errors.body %}

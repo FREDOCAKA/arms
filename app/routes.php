@@ -5,16 +5,22 @@
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 use App\Middleware\AdminMiddleware;
+use App\Middleware\StudentMiddleware;
 
 $app->get('/', 'HomeController:index')->setName('home');
-$app->post('/student/partner/{id}','ProjectPartnerController:addPartner')->setName('partner.add');
-$app->delete('/student/partner/{id}','ProjectPartnerController:deletePartner')->setName('partner.delete');
+$app->get('/projectss/{id}','HomeController:show')->setName('home.show');
 
-/******************************************************* 
-*
-*Admin Routes
-*
-/******************************************************** */
+
+/** ---------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------
+ * Admin Routes
+ * 
+ * 
+ * Accessible by Admin
+ * 
+ * -----------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
+ */
 
 $app->group('',function(){
 
@@ -74,15 +80,22 @@ $this->post('/project','ProjectController:search')->setName('project.search');
 })->add( new AdminMiddleware($container));
 
 
-/**
+/** ---------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------
  * Auth Routes
+ * 
+ * 
+ * Accessible by authenticated user only
+ * 
+ * -----------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
  */
 $app->group('', function(){
 
     //logout
     $this->get('/auth/logout','LoginController:getLogout')->setName('logout');
     //dashboard
-    $this->get('/dashboard','HomeController:getDashboard')->setName('dashboard');
+    $this->get('/dashboard','DashboardController:index')->setName('dashboard');
 
     //profile
     $this->get('/profile/{id}','ProfileController:getProfile')->setName('profile');
@@ -100,9 +113,19 @@ $app->group('', function(){
 
 })->add( new AuthMiddleware($container));
 
-/**
- * Guest Routes
+
+/** ---------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------
+ *  Guest Routes
+ * 
+ * 
+ * Accessible by Guest only
+ * 
+ * -----------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
  */
+
+
 $app->group('', function(){
     // Registration routes  for students
     $this->get('/auth/signup','SignupController:getSignup')->setName('auth.signup');
@@ -121,3 +144,22 @@ $app->group('', function(){
 
 })->add( new GuestMiddleware($container));
 
+
+
+
+/** ---------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------
+ *  Student routes
+ * 
+ * 
+ * Accessible by authenticated  student only
+ * 
+ * -----------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
+ */
+
+$app->group('' ,function(){
+    $this->post('/student/partner/{id}','ProjectPartnerController:addPartner')->setName('partner.add');
+    $this->delete('/student/partner/{id}','ProjectPartnerController:deletePartner')->setName('partner.delete');
+
+})->add (new StudentMiddleware($container));

@@ -114,7 +114,7 @@ class ProjectPartnerController extends Controller
                         
                         if($isPartner)
                         {
-                            return $this->customRedirect($response,$current_user, ucwords($partner->name).' is  your project partner');
+                            return $this->customRedirect($response,$current_user, ucwords($partner->name).'  is  already in a group');
                         }
                         else{
                             return $this->customRedirect($response,$current_user, ucwords($partner->name).' is  already in a group');
